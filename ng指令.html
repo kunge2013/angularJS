@@ -1,0 +1,39 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+<script>
+    var app = angular.module("myApp", []);
+  
+</script>
+</head>
+
+<body>
+        <div ng-app="" ng-init="mySwitch=true">
+                <p>
+                <button ng-disabled="mySwitch">点我!</button>
+                </p>
+                
+                <p>
+                <input type="checkbox" ng-model="mySwitch">按钮
+                </p>
+                <p>
+                {{ mySwitch }}
+                </p>
+                <p>
+                        <button disabled>点我1！</button>
+                </p>
+                <p>
+                        <button>点我!</button>
+                </p>
+                <p ng-show="true">我是可见的。</p>
+                <p ng-show="false">我是不可见的。</p>
+                <p ng-show="hour > 12">我是可见的。</p>
+                <p ng-hide="true">我是不可见的。</p>
+                <p ng-hide="false">我是可见的。</p>
+
+        </div>
+
+</body>
+</html>

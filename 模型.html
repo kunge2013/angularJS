@@ -1,0 +1,37 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+  <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope) {
+            $scope.firstName = "John";
+            $scope.lastName = "Doe";
+        });
+        app.controller("yourCtrl", function($scope) {
+        $scope.secondName = "xiaoming";
+        $scope.thirdName = "daming";
+        });
+        var app1 = angular.module('yourApp', []);
+        app1.controller("yourCtrl", function($scope) {
+        $scope.secondName = "yitianjian";
+        $scope.thirdName = "tulongdao";
+        });
+        angular.bootstrap(document.getElementById("app2"), ['yourApp']);
+  </script>
+</head>
+
+<body>
+    <div id="app1" ng-app="myApp">
+        <span  ng-controller="myCtrl">{{ firstName + " " + lastName }}</span>
+        <br>
+        <span  ng-controller="yourCtrl">{{ secondName + " " + thirdName + (1 + 2) }}</span>
+        </div>
+        <br>
+        <div id="app2" ng-app="yourApp" ng-controller="yourCtrl">
+        {{1 + 2}}
+        {{ secondName + " " + thirdName }}
+    </div>
+</body>
+</html>

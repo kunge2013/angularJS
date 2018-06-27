@@ -1,0 +1,49 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('formCtrl', function($scope) {
+        $scope.firstname = "John";
+        $scope.myVar1 = 'XXX';
+    });
+
+    app.controller('formCtrl2', function($scope) {
+    $scope.master = {firstName: "John", lastName: "Doe"};
+
+    $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+    };
+    $scope.reset();
+});
+</script>
+</head>
+
+<body ng-app="myApp"> 
+        <input type="text" ng-model="firstname">
+        <input type="checkbox" ng-model="myVar">
+        <h1 ng-show="myVar">My Header</h1>
+              <form>
+                选择一个选项:
+                <input type="radio" ng-model="myVar1" value="dogs">Dogs
+                <input type="radio" ng-model="myVar1" value="tuts">Tutorials
+                <input type="radio" ng-model="myVar1" value="cars">Cars
+              <br/>  {{myVar1}}
+            </form>
+
+                <div  ng-controller="formCtrl2">
+                    <form novalidate>
+                      First Name:<br>
+                      <input type="text" ng-model="user.firstName"><br>
+                      Last Name:<br>
+                      <input type="text" ng-model="user.lastName">
+                      <br><br>
+                      <button ng-click="reset()">RESET</button>
+                    </form>
+                    <p>form = {{user}}</p>
+                    <p>master = {{master}}</p>
+                  </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+  <script src="personController.js"></script>
+
+  <body ng-app="myApp">
+      <div ng-controller="myCtrl">       //输出结果
+          {{first}}<br>                 //ctrl局部first
+          {{$root.first}}<br>           //全局first
+          {{second}}<br>                //全局second
+          {{$root.second}}<br>          //全局second
+      </div>
+      <br>
+      <br>
+      <div ng-controller="myCtrl2">
+          {{first}}<br>                //全局first
+          {{$root.first}}<br>          //全局first
+          {{second}}<br>              //ctrl2局部second 
+          {{$root.second}}            //全局second
+      </div>
+      <script>    
+      var app = angular.module('myApp', []);    
+      app.controller('myCtrl', function ($scope,$rootScope) {
+              $scope.first = 'ctrl局部first';
+              $rootScope.first = '全局first';
+          });    
+      app.controller('myCtrl2', function ($scope,$rootScope) {
+              $scope.second = 'ctrl2局部second';
+              $rootScope.second = '全局second';    
+      });
+      </script>
+      </body>
+</html>

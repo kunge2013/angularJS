@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <p>{{ x1 }}</p>
+        <p>{{ x2 }}</p>
+
+
+        <input type="text" ng-model="myInput" ng-blur="blur()">
+        <p>输入的内容为：{{myInput}}</p>
+        <p>变成小写：{{ x1 }}</p>
+        <p>变成大写：{{ x2 }}</p>
+      <p ng-switch = "x3">
+          是不是字符串：
+          <label ng-switch-when = "true">是</label>
+          <label ng-switch-when = "false">不是</label>
+          <label ng-switch-when = ""></label>
+      </p>
+         <p ng-switch = "x4">
+          是不是数字：
+          <label ng-switch-when = "true">是</label>
+          <label ng-switch-when = "false">不是</label>
+          <label ng-switch-when = ""></label>
+      </p>
+
+
+        </div>
+        
+        <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+        $scope.x1 = "JOHN";
+        $scope.x2 = angular.lowercase($scope.x1);
+        $scope.x3 = angular.isString($scope.x1);
+        // angular.isNumber 这里无效
+        $scope.x4 = !isNaN($scope.x1);
+        });
+        </script>
+
+</body>
+</html>

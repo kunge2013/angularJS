@@ -1,0 +1,66 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+  <script >
+     var myApp =  angular.module('myApp', []).
+        controller('personCtrl', function($scope) {
+                    $scope.firstName = "John",
+                    $scope.lastName = "Doe",
+                    $scope.fullName = function() {
+                        return $scope.firstName + " " + $scope.lastName;
+                    }
+                    });
+        myApp.controller('costCtrl', function($scope) {
+        $scope.firstName = "John",
+        $scope.lastName = "Doe",
+       
+        $scope.fullName = function() {
+            return $scope.firstName + " " + $scope.lastName;
+        }
+        });
+          myApp.controller('namesCtrl', function($scope) {
+                 $scope.msg = '0aaaS';
+                 $scope.names = [{name : 'zhangsan',country :'武汉'},{name : 'lisi',country :'上海'},{name : '王五',country :'上海'}];
+        });
+
+       myApp.filter('reverse', function() { //可以注入依赖
+            return function(text)
+             {
+                     return text.split("").reverse().join(",");
+            }
+});
+  </script>
+
+ <body>
+        <div ng-app="myApp" ng-controller="personCtrl">
+                <h1>大小写转换</h1>
+                <p>姓名为 {{ lastName | uppercase }}</p>
+                <p>姓名为 {{ lastName | lowercase }}</p>
+                <h1>计算数据</h1>
+                <div ng-controller="costCtrl">
+                        <input type="number" ng-model="quantity">
+                        <input type="number" ng-model="price">
+                        <p>总价 = {{ (quantity * price) | currency }}</p>
+                </div>
+                
+                <div  ng-controller="namesCtrl">
+
+                        <ul>
+                          <li ng-repeat="x in names | orderBy:'country'">
+                            {{  (x.name | uppercase) + ', ' + x.country }}
+                          </li>
+                        </ul>
+                        
+                </div>
+
+                    <h1>过滤拦截器</h1>
+                <div  ng-controller="namesCtrl">
+                        姓名: {{ msg | reverse }}
+               </div>
+        </div>
+        
+       
+</body>
+</html>

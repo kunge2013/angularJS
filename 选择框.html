@@ -1,0 +1,72 @@
+<!doctype html>
+<html >
+
+<head>
+  <script src="http://code.angularjs.org/1.2.25/angular.min.js"></script>
+  <script >
+     var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+        $scope.names = ["Google", "Runoob", "Taobao"];
+        $scope.persons = {
+					caohui: {
+						age: 27,
+						sex: 'male',
+						salary: 10000
+					},
+					youlangta: {
+						age: 20,
+						sex: 'male',
+						salary: 500
+					},
+					chenyanchan: {
+						age: 24,
+						sex: 'female',
+						salary: 6000
+                    } 
+                };
+
+       
+        $scope.cars = {
+            car01 : {brand : "Ford", model : "Mustang", color : "red"},
+            car02 : {brand : "Fiat", model : "500", color : "white"},
+            car03 : {brand : "Volvo", model : "XC90", color : "black"}
+            };
+            $scope.selectedCar = $scope.cars.car02; 
+    });
+  </script>
+
+ <body>
+                <div ng-app="myApp" ng-controller="myCtrl">
+                        <h2>selected  ng-init selectedName</h2>
+                        <select ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names">
+                        </select>
+                        你选中了: {{selectedName}}
+                        <h2>selecte  ng-repeat</h2>
+                        <select ng-model="selectedName2">
+                                <option ng-repeat="x in names">{{x}}</option>
+                        </select>
+
+                       你选中了: {{selectedName2}}
+                        <br/>
+                       <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">
+                        </select>
+
+
+                        <div ng-controller="myCtrl">
+                                <select ng-init="selectPerson=persons['caohui']" ng-model="selectPerson"
+                                ng-options="x for (x,y) in persons">
+                                </select>
+                                <p>
+                                    年龄:{{selectPerson.age}}
+                                </p>
+                                <p>
+                                    性别:{{selectPerson.sex}}
+                                </p>
+                                <p>
+                                    月薪:{{selectPerson.salary}}
+                                </p>
+                            </div>
+                </div>
+              
+</body>
+</html>
